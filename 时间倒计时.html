@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <script>
+                timeId=setInterval(function(){
+                var now = new Date();
+                console.log(now);
+                var end = new Date(2024,11,15,17,35,20);
+                console.log(end);
+                var cha = end-now;
+                console.log(cha);
+                var div = document.querySelector('div');
+                    if(cha<1000){
+                        clearInterval(timeId);
+                        div.innerHTML = "时间到！";
+                    }else{
+                    var cha = end-now;
+                    cha-=1000;
+                    var d = Math.floor(cha/1000/60/60/24);
+                    var h = Math.floor(cha/1000/60/60)%24;
+                    var m = Math.floor(cha/1000/60)%60;
+                    var s = Math.floor(cha/1000)%60;
+                    console.log("111")
+                    div.innerHTML = `${d}天${h}小时${m}分${s}秒`; 
+                    }
+                },1000)
+
+        // }
+ 
+        
+
+    </script>
+</body>
+
+</html>

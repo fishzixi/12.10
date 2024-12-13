@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100vh;
+            height: 200vh;
+            background: linear-gradient(to bottom right, #ff0000, #00ff00);
+        }
+
+        html,
+        body {
+            scroll-behavior: smooth;
+        }
+
+        button {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>滚动到底部的页面会到顶部</div>
+    <button>顶部</button>
+
+    <script>
+        var button = document.querySelector('button');
+        button.addEventListener('click', function () {
+            // 获取 html 样式
+            var htmlActivestyle = getComputedStyle(document.documentElement);
+            // 直接检查 scrollBehavior 属性
+            // if (htmlActivestyle.scrollBehavior === "smooth") {//等于"smooth"说明浏览器支持平滑滚动
+            //     document.documentElement.scrollTop = 0; // 将页面滚动到最顶部。
+            // } else {
+                var timeId = setInterval(function(){
+                    var nowlength = document.documentElement.scrollTop;
+                    if(nowlength<=10) {
+                        clearInterval(timeId);//清除定时器
+                        document.documentElement.scrollTop=0;
+                        // nowlength = 0;
+                    }else {
+                        document.documentElement.scrollTop = nowlength - 10; // 每次减少10个像素
+                        
+                        // nowlength = nowlength-10; 这样不行是因为虽然nowlength被赋予了新值
+                        // 但document.documentElement.scrollTop没有，所以没有实现，后面赋值顶替前面
+                    }
+                },100)
+            // }
+        })
+
+    </script>
+</body>
+
+</html>
